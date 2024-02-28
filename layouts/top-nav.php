@@ -1,7 +1,6 @@
-<?php
-ob_start();
-session_start();
+<?php 
 ?>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-secondary bg-gradient">
 
     <a class="navbar-brand " href="<?= url('panel') ?>">Bit Blog</a>
@@ -15,16 +14,16 @@ session_start();
                 <a class="nav-link " href="<?= url('index.php') ?>">Home <span class="sr-only ">(current)</span></a>
             </li>
 
-            <?php 
+            <?php
             $query = "SELECT * FROM categories;";
             $statement = $pdo->prepare($query);
             $statement->execute();
             $categories = $statement->fetchAll();
 
             foreach ($categories as $category) { ?>
-            <li class="nav-item ">
-                <a class="nav-link " href="<?= url('category.php?cat_id=') . $category->id ?>"><?= $category->name ?></a>
-            </li>
+                <li class="nav-item ">
+                    <a class="nav-link " href="<?= url('category.php?cat_id=') . $category->id ?>"><?= $category->name ?></a>
+                </li>
 
             <?php } ?>
 
@@ -33,18 +32,17 @@ session_start();
 
     <section class="d-inline ">
 
-                <?php 
-                if (!isset($_SESSION['user'])) {
-                    ?>
-        <a class="text-decoration-none text-white px-2 " href="<?= url('auth/register.php') ?>">register</a>
-        <a class="text-decoration-none text-white " href="<?= url('auth/login.php') ?>">login</a>
         <?php
-                } else { ?>
+        if (!isset($_SESSION['user'])) {
+        ?>
+            <a class="text-decoration-none text-white px-2 " href="<?= url('auth/register.php') ?>">register</a>
+            <a class="text-decoration-none text-white " href="<?= url('auth/login.php') ?>">login</a>
+        <?php
+        } else { ?>
 
-        <a class="text-decoration-none text-white px-2 " href="<?= url('auth/logout.php') ?>">logout</a>
+            <a class="text-decoration-none text-white px-2 " href="<?= url('auth/logout.php') ?>">logout</a>
 
         <?php } ?>
 
     </section>
 </nav>
-<? ob_end_flush() ?>

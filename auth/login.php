@@ -17,7 +17,8 @@ session_start();
                     if(password_verify($_POST['password'], $user->password))
                     {
                             $_SESSION['user'] =  $user->email;
-                            redirect('panel');
+                            redirect('index.php');
+                            // redirect('panel');
                     }
                     else{
                         $error = 'password is wrong';
