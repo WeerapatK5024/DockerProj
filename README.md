@@ -4,7 +4,8 @@ https://github.com/MobinaJafarian/BitBlog
 https://github.com/MobinaJafarian/BitBlog
 
 https://github.com/MobinaJafarian/BitBlog
-From MobinaJaFarian
+
+**From MobinaJaFarian**
 
 # Bit Blog
 simple PHP blog
