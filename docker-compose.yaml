@@ -1,0 +1,43 @@
+version: "3.8"
+services:
+
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8081:80
+    volumes:
+      - .:/var/www/html
+    networks:
+      - mynetwork
+
+  mysql:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - mynetwork
+
+
+  # maria_db:
+  #   image: mariadb:10.4.25
+  #   restart: always
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: root
+
+  phpmyadmin:
+    image: phpmyadmin:5.2.0
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
